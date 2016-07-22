@@ -19,16 +19,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-//                認証の対象外にしたいURLがある場合には、以下のような記述を追加します
-//                複数URLがある場合はantMatchersメソッドにカンマ区切りで対象URLを複数列挙します
-//                .antMatchers("/country/**").permitAll()
-                .antMatchers("/encode").permitAll()
+        		// 認証の対象外にしたいURL
+        		.antMatchers("/encode","/webjars/*/*/*","/webjars/*/*/*/*").permitAll()
+                // それ以外は認証後のみ閲覧可
                 .anyRequest().authenticated();
         http.formLogin()
                 .loginPage("/")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/menu")
+                // ログイン失敗時
                 .failureUrl("/")
+                // パラメータ名
                 .usernameParameter("id")
                 .passwordParameter("password")
                 .permitAll()

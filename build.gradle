@@ -7,6 +7,8 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+        classpath("org.springframework:springloaded:1.2.6.RELEASE")
+
 	}
 }
 
@@ -17,7 +19,7 @@ apply plugin: 'war'
 
 
 war {
-	baseName = 'demo'
+	baseName = 'springboot-sample'
 	version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
@@ -32,9 +34,11 @@ configurations {
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.webjars:bootstrap:3.3.6")
+    compile("org.webjars:jquery:3.0.0")
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }

@@ -1,17 +1,80 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>login</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>ログイン</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <style>
+    <!--
+    body {
+        padding-top: 50px;
+    }
+    .navbar-brand {
+        font-size: 24px;
+    }
+    .form-group {
+        margin-bottom: 5px;
+    }
+    -->
+    </style>
 </head>
+
 <body>
-    <div th:if="${param.error}">
-        エラー: ユーザ名・パスワードが違います。
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-push-3 col-md-6">
+                <div class="form-wrap">
+                    <div class="text-center"><h1>WebApp - Basic</h1></div>
+                    <br/>
+                    <form role="form" action="#" th:action="@{/login}" method="post" id="login-form" autocomplete="off">
+                        <div class="form-group" th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+                            <p class="form-control-static text-danger" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="id" class="sr-only">ID</label>
+                            <input type="text" name="id" id="id" class="form-control" placeholder="ID を入力して下さい"
+                                   th:value="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null ? ${session['SPRING_SECURITY_LAST_EXCEPTION'].authentication.principal} : ''"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="sr-only">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password を入力して下さい"/>
+                        </div>
+                        <br/>
+                        <button id="btn-login" class="btn btn-primary btn-block">ログイン</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <form th:action="@{/login}" method="post">
-        <div><label>ユーザ名: <input type="text" name="username"/> </label></div>
-        <div><label>パスワード: <input type="password" name="password"/> </label></div>
-        <div><input type="submit" value="ログイン"/></div>
-    </form>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+
+    <script type="text/javascript">
+    <!--
+    $(document).ready(function() {
+        $('#id').focus().select();
+    });
+    -->
+    </script>
 </body>
 </html>
