@@ -47,9 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 独自認証クラスを設定する
         auth
         .inMemoryAuthentication()
-            .withUser("user").password("password").roles("USER");
+            .withUser("user").password("user").roles("USER");
         auth
        .inMemoryAuthentication()
-            .withUser("admin").password("password").roles("ADMIN");
+            .withUser("admin").password("admin").roles("ADMIN");
     }
 }

@@ -10,7 +10,7 @@ import jp.co.demo.bean.SampleForm;
 @Controller
 public class MenuController {
 
-   @RequestMapping("/memu")
+   @RequestMapping("/menu")
    public String result(@ModelAttribute("sampleForm") SampleForm form) {
        /*
         *  画面で入力された値はform.getName()で取得可能。
