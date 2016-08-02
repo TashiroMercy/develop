@@ -39,8 +39,11 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("org.webjars:bootstrap:3.3.6")
     compile("org.webjars:jquery:3.0.0")
+    compile group: 'org.webjars', name: 'webjars-locator', version: '0.32'
+    compile("com.h2database:h2")
     compile files("$jdkHome/lib/tools.jar")
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
