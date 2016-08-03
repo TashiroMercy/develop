@@ -2,6 +2,7 @@ package jp.co.demo.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import jp.co.demo.model.User;
 
@@ -14,4 +15,5 @@ public interface UserMapper {
 	@Select("SELECT loginUserId, password  FROM user WHERE loginUserId = #{loginUserId}")
 	User select(String loginUserId);
 	
+	User select2(@Param("loginUserId") String loginUserId);
 }

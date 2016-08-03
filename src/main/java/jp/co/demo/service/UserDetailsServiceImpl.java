@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = null;
         try {
             // 入力したユーザーIDから認証を行うユーザー情報を取得する
-        	user = userMapper.select(login_id);
+        	user = userMapper.select2(login_id);
 			if (Objects.isNull(user)) {
 				 throw new UsernameNotFoundException("User not found for login id: " + login_id);
 			}
