@@ -1,11 +1,27 @@
 create table customer (
-    id int primary key auto_increment,
-    name varchar(50),
-    email varchar(50)
+	id int primary key auto_increment,
+	name varchar(50),
+	email varchar(50)
 );
 
-CREATE TABLE book(
-  book_id INTEGER PRIMARY KEY,
-  book_name VARCHAR(20),
-  price INTEGER
+/* USERS */
+CREATE TABLE USER (
+	LOGINUSERID VARCHAR(10) NOT NULL,
+	PASSWORD VARCHAR(32) NOT NULL,
+	PRIMARY KEY(LOGINUSERID)
+);
+
+/* USERS */
+CREATE TABLE USERS (
+	USERNAME VARCHAR(10) NOT NULL,
+	PASSWORD VARCHAR(32) NOT NULL,
+	ENABLED SMALLINT,
+	PRIMARY KEY(USERNAME)
+);
+
+/* USER */
+CREATE TABLE AUTHORITIES (
+	USERNAME VARCHAR(10) NOT NULL,
+	AUTHORITY VARCHAR(10) NOT NULL,
+	FOREIGN KEY(USERNAME) REFERENCES USERS
 );

@@ -40,9 +40,12 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-jdbc")
+	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
     compile("org.webjars:bootstrap:3.3.6")
     compile("org.webjars:jquery:3.0.0")
-    compile group: 'org.webjars', name: 'webjars-locator', version: '0.32'
+	compile("org.webjars:html5shiv:3.7.3")
+	compile("org.webjars.npm:respond.js:1.4.2")
+	compile("org.webjars:webjars-locator:0.32")
     compile("com.h2database:h2")
     compile files("$jdkHome/lib/tools.jar")
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
