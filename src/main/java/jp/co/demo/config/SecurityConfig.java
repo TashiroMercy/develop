@@ -42,17 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 	}
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        // 独自認証クラスを設定する
-//        auth
-//        .inMemoryAuthentication()
-//            .withUser("user").password("user").roles("USER");
-//        auth
-//       .inMemoryAuthentication()
-//            .withUser("admin").password("admin").roles("ADMIN");
-//    }
-
 	@Configuration
 	protected static class AuthenticationConfiguration  extends GlobalAuthenticationConfigurerAdapter {
 		@Autowired
@@ -65,7 +54,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			// 入力値をbcryptでハッシュ化した値でパスワード認証を行う
 			//.passwordEncoder(new BCryptPasswordEncoder())
 			;
-		
 		}
 	}
 }

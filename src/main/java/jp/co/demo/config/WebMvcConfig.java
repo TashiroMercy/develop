@@ -37,7 +37,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/webjars/**")
 				.addResourceLocations("classpath:/META-INF/resources/webjars/")
 				.resourceChain(false) // 自動でWebJarsResourceResolverが有効化される
-				.addResolver(new GzipResourceResolver());
+				.addResolver(new GzipResourceResolver())
+				;
 	}
 
 	/**
