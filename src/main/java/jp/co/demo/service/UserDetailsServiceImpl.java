@@ -22,11 +22,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	UserMapper userMapper; 
 
-    @Override
-    public UserDetails loadUserByUsername(String login_id)
-            throws UsernameNotFoundException {
+	@Override
+	public UserDetails loadUserByUsername(String login_id) throws UsernameNotFoundException {
 
-        // 認証を行うユーザー情報を格納する
+		// 認証を行うユーザー情報を格納する
         User user = null;
         try {
             // 入力したユーザーIDから認証を行うユーザー情報を取得する
