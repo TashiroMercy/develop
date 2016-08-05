@@ -13,7 +13,7 @@ public interface UserMapper {
 	void insert(User user);
 
 	@Select("SELECT loginUserId, password  FROM user WHERE loginUserId = #{loginUserId}")
-	User select(String loginUserId);
+	User select2(String loginUserId);
 	
-	User select2(@Param("loginUserId") String loginUserId);
+	User select(@Param("loginUserId") String loginUserId);
 }

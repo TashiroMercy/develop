@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	<title>メニュー</title>
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/sticky-footer/dist/css/sticky-footer.css}" rel="stylesheet" />
+
+<!--[if lt IE 9]><!-->
+	<script src="/static/javascript/jquery-1.9.1.min.js"></script>
+	<script th:src="@{/webjars/respond.js/dest/respond.min.js}"></script>
+	<script th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+<!--<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script  th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<!--<![endif]-->
+
+
+    <!-- Custom styles for this template -->
+    <style>
+    <!--
+    body {
+        padding-top: 70px;
+    }
+    .navbar-brand {
+        font-size: 24px;
+    }
+    .panel-heading {
+        padding: 5px 10px;
+    }
+    .form-group {
+        margin-bottom: 5px;
+    }
+    .pagination {
+        margin: 10px 0;
+    }
+    .panel {
+        margin-bottom: 10px;
+    }
+    .table {
+        margin-bottom: 10px;
+    }
+    -->
+    </style>
+</head>
+
+<body>
+	<div id="header" th:include="common/header :: header (active='countryList')"></div>
+
+	<!-- フッターは#wrapの外に -->
+<!--	<footer class="footer" style="height:22px;padding-right:16px;">
+		<div class="row">
+			<div class="col-xs-6">
+				&nbsp;&nbsp;<i class="fa fa-info-circle"></i>&nbsp;version:${title}-${version}&nbsp;
+			</div>
+			<div class="col-xs-6">
+				<p class="text-right"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<p th:text="${timestamp}">timestamp</p></p>
+			</div>
+		</div>
+	</footer>
+-->
+	<footer class="footer" style="height:22px;">
+		<div class="container " >
+			<p th:text="${timestamp}">timestamp</p>
+		</div>
+	</footer>
+
+
+	<div class="container-fluid" style="padding-top:60px;">
+		<ul class="row" style="list-style-type: none">
+			<li th:each="menuKindId : ${menuKindId}" class="col-xs-6 col-sm-4 col-md-4 col-lg-3" style="min-height:160px;">
+				<ul style="list-style-type: none">
+					<li class="header"><strong>
+						<p th:text="${mkindNm.get(menuKindId)}">メニュータイトル</p>
+					</strong></li>
+					<li class="separator"><HR style="margin-top:10px;margin-bottom:10px;"/></li>
+
+					<li th:each="menu : ${mMenuKind.get(menuKindId)}">
+						<a href= "#" th:href="${menu.funcPath}">
+							<p th:text="${menu.funcId}">機能ＩＤ</p>&nbsp;:&nbsp;<p th:text="${menu.funcNm}">機能名</p>
+						</a>
+					</li>
+				</ul>
+				<br/>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

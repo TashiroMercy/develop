@@ -17,8 +17,8 @@
 			loginUserId = #{loginUserId, jdbcType = VARCHAR}
 	</sql>
 
-	<!-- select2 -->
-	<select id="select2" resultMap="ResultMap" >
+	<!-- select -->
+	<select id="select" resultMap="ResultMap" >
 		SELECT 
 		  <include refid="Base_Column_List" />
 		FROM

@@ -13,32 +13,43 @@ import jp.co.demo.service.UserDetailsServiceImpl;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	/**
+	 * SpringSecurity定義クラス.
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-        		// 認証の対象外にしたいURL
-        		.antMatchers("/encode","/webjars/**").permitAll()
-                // それ以外は認証後のみ閲覧可
-                .anyRequest().authenticated();
-        http.formLogin()
-                .loginPage("/")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/menu")
-                // ログイン失敗時
-                .failureUrl("/")
-                // パラメータ名
-                .usernameParameter("id")
-                .passwordParameter("password")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true)
-                .permitAll();
+		http.authorizeRequests()
+				// 認証の対象外にしたいURL
+				.antMatchers("/encode","/webjars/**").permitAll()
+				// '/admin/'で始まるURLには、'ADMIN'ロールのみアクセス可
+				.antMatchers("/admin/**").hasRole("ADMIN")
+				// それ以外は認証後のみ閲覧可
+				.anyRequest().authenticated();
+
+		http.formLogin()
+				// ログイン処理のURL
+				.loginPage("/login")
+				.loginProcessingUrl("/login")
+				.defaultSuccessUrl("/menu")
+				// ログイン失敗時
+				.failureUrl("/")
+				// パラメータ名
+				.usernameParameter("id")
+				.passwordParameter("password")
+				.permitAll()
+
+				.and()
+				.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/login")
+				.deleteCookies("JSESSIONID")
+				.invalidateHttpSession(true)
+				.permitAll();
 	}
 
+	/**
+	 * ログイン認証クラス.
+	 */
 	@Configuration
 	protected static class AuthenticationConfiguration  extends GlobalAuthenticationConfigurerAdapter {
 		@Autowired
